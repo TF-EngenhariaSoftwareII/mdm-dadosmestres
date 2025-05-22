@@ -1,6 +1,7 @@
 package com.pucrs.mdm_service.controller;
 
 import com.pucrs.mdm_service.entities.Country;
+import com.pucrs.mdm_service.entities.Currency;
 import com.pucrs.mdm_service.service.CountryService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,12 @@ public class CountryController {
 
     @PostMapping
     public Country createCountry(@RequestBody Country country) {
+        if (country.getCurrencies() != null) {
+            for (Currency currency : country.getCurrencies()) {
+                currency.setCountry(country);
+            }
+        }
+
         return countryService.saveCountry(country);
     }
 
