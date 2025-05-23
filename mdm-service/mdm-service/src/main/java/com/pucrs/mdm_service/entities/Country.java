@@ -2,6 +2,8 @@ package com.pucrs.mdm_service.entities;
 
 import jakarta.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 public class Country {
@@ -16,10 +18,11 @@ public class Country {
     private Long population;
     private Double area;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Currency> currencies;
 
-        public Long getId() {
+    public Long getId() {
         return id;
     }
 

@@ -1,5 +1,7 @@
 package com.pucrs.mdm_service.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,9 +15,11 @@ public class Currency {
     private String currencyName;
     private String currencySymbol;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+
 
     public Long getId() {
         return id;
