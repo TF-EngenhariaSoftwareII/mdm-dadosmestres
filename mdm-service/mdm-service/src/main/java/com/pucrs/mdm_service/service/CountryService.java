@@ -37,12 +37,12 @@ public class CountryService {
     }
 
     public Country getCountryByName(String name) {
-        return countryRepository.findByName(name)
+        return countryRepository.findByCountryName(name)
                 .orElseThrow(() -> new RuntimeException("Country not found with name: " + name));
     }
 
     public boolean countryExistsByName(String name) {
-        return countryRepository.findByName(name).isPresent();
+        return countryRepository.findByCountryName(name).isPresent();
     }
 
     public boolean countryExistsById(Long id) {
